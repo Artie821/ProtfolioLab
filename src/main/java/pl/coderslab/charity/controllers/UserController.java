@@ -195,7 +195,7 @@ public class UserController {
             ConfirmationToken confirmationToken = new ConfirmationToken(user);
             confirmationTokenRepository.save(confirmationToken);
             emailService.sendSimpleMessage(user.getEmail(),"Complete Registration!","To confirm your account, please click here : "
-                    +"http://localhost:8080/confirm-account?token="+confirmationToken.getConfirmationToken());
+                    +"https://portfoliocharityapp.herokuapp.com/confirm-account?token="+confirmationToken.getConfirmationToken());
 
         } catch (UserAlreadyExistException e) {
             model.addAttribute("login", true);
@@ -259,7 +259,7 @@ public class UserController {
             ConfirmationToken confirmationToken = new ConfirmationToken(userRepository.findByEmail(email));
             confirmationTokenRepository.save(confirmationToken);
             emailService.sendSimpleMessage(email,"Password reset link!","Aby utworzyć nowe hasło kliknij w link : "
-                    +"http://localhost:8080/reset-password?token="+confirmationToken.getConfirmationToken());
+                    +"https://portfoliocharityapp.herokuapp.com/reset-password?token="+confirmationToken.getConfirmationToken());
             return "redirect: ../../passwordReset?success=true";
         }
     }
