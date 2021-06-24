@@ -277,7 +277,7 @@ public class UserController {
         }
         else
         {
-            return "redirect:/setPassword?badToken=true";
+            return "badToken";
         }
     }
 
