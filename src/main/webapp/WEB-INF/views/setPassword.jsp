@@ -20,7 +20,10 @@
                         </c:if>
                         <c:if test="${regex}">
                             <div style="color: red; font-size: 20px">
-                                NIE PASUJE 8 zanków!
+                                <div style="font-size: 15px; height: 20px; color: red">Hasło musi mieć conajmniej 8 zanków,</div>
+                                <div style="font-size: 15px; height: 20px; color: red">jedną dużą literę,</div>
+                                <div style="font-size: 15px; height: 20px; color: red">jedną liczbę,</div>
+                                <div style="font-size: 15px; height: 20px; color: red">jednen znak specjalny!</div>
                             </div>
                         </c:if>
                         <c:if test="${match}">

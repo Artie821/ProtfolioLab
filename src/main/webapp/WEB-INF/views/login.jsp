@@ -20,7 +20,7 @@
                         </c:if>
                         <c:if test="${param.error}">
                             <div style="color: red; font-size: 20px">
-                                Niestety takie konto nie istnieje w naszej bazie!
+                                Niestety takie konto nie istnieje w naszej bazie, <br> jest zablokowane, lub nie jest aktywowane!
                             </div>
                         </c:if>
                         <input type="text" id="username" placeholder="Nazwa użytkownika" required autofocus name="username" />

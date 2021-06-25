@@ -113,7 +113,7 @@ public class UserController {
             if (newpass.equals(newpassConfirm)) {
                 String regex = "^(?=.*[0-9])"
                         + "(?=.*[a-z])(?=.*[A-Z])"
-                        + "(?=.*[@#$%^&+=])"
+                        + "(?=.*[@#$%^\\.\\,&+=])"
                         + "(?=\\S+$).{8,20}$";
                 Pattern pattern = Pattern.compile(regex);
                 Matcher match = pattern.matcher(newpass);
