@@ -219,7 +219,6 @@ public class UserController {
             UserEntity userEntity = userRepository.findByUsername(token.getUserEntity().getUsername());
             userEntity.setActive(true);
             userRepository.save(userEntity);
-            confirmationTokenRepository.delete(token);
             return "redirect:/login?successToken=true";
         }
         else
@@ -274,7 +273,6 @@ public class UserController {
             UserEntity user = userRepository.findByUsername(token.getUserEntity().getUsername());
             model.addAttribute("user", user);
             model.addAttribute("token", confirmationToken );
-            confirmationTokenRepository.delete(token);
             return "/setPassword";
         }
         else
