@@ -13,7 +13,7 @@
 
             <div class="slogan--steps">
                 <div class="slogan--steps-title">Wystarczą 4 proste kroki:</div>
-                <ul class="slogan--steps-boxes" onclick="window.location.href='/logged/form#form--steps'" >
+                <ul class="slogan--steps-boxes" >
                     <li>
                         <div><em>1</em><span>Wybierz rzeczy</span></div>
                     </li>
@@ -54,7 +54,7 @@
 <section class="steps" id="steps">
     <h2>Wystarczą 4 proste kroki</h2>
 
-    <div class="steps--container">
+    <div class="steps--container" onclick="window.location.href='/logged/form#form--steps'">
         <div class="steps--item">
             <span class="icon icon--hands"></span>
             <h3>Wybierz rzeczy</h3>
