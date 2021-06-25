@@ -13,7 +13,7 @@
 
             <div class="slogan--steps">
                 <div class="slogan--steps-title">Wystarczą 4 proste kroki:</div>
-                <ul class="slogan--steps-boxes">
+                <ul class="slogan--steps-boxes" onclick="window.location.href='/logged/form#form--steps'" >
                     <li>
                         <div><em>1</em><span>Wybierz rzeczy</span></div>
                     </li>
