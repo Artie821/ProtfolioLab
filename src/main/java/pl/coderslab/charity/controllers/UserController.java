@@ -113,7 +113,7 @@ public class UserController {
             if (newpass.equals(newpassConfirm)) {
                 String regex = "^(?=.*[0-9])"
                         + "(?=.*[a-z])(?=.*[A-Z])"
-                        + "(?=.*[@#$%^\\.\\,&+=])"
+                        + "(?=.*[@#$%^[.][,]&+=])"
                         + "(?=\\S+$).{8,20}$";
                 Pattern pattern = Pattern.compile(regex);
                 Matcher match = pattern.matcher(newpass);
@@ -194,7 +194,7 @@ public class UserController {
             userService.saveUser(user);
             ConfirmationToken confirmationToken = new ConfirmationToken(user);
             confirmationTokenRepository.save(confirmationToken);
-            emailService.sendSimpleMessage(user.getEmail(),"Complete Registration!","To confirm your account, please click here : "
+            emailService.sendSimpleMessage(user.getEmail(),"Rejestracja zakończona powodzeniem!","Aby aktywować konto, kliknij tutaj : "
                     +"https://portfoliocharityapp.herokuapp.com/confirm-account?token="+confirmationToken.getConfirmationToken());
 
         } catch (UserAlreadyExistException e) {
@@ -252,13 +252,13 @@ public class UserController {
 
     @PostMapping("/passwordReset")
     public String passwordResetForm(@RequestParam String email){
-        userRepository.findByEmail(email);
+        UserEntity user = userRepository.findByEmail(email);
         if(userRepository.findByEmail(email) == null){
           return "redirect: ../../passwordReset?missingEmail=true";
         }else {
             ConfirmationToken confirmationToken = new ConfirmationToken(userRepository.findByEmail(email));
             confirmationTokenRepository.save(confirmationToken);
-            emailService.sendSimpleMessage(email,"Password reset link!","Aby utworzyć nowe hasło kliknij w link : "
+            emailService.sendSimpleMessage(email,"Link do resetu hasła!","Aby utworzyć nowe hasło dla użytkownika " + user.getUsername() +" kliknij w link : "
                     +"https://portfoliocharityapp.herokuapp.com/reset-password?token="+confirmationToken.getConfirmationToken());
             return "redirect: ../../passwordReset?success=true";
         }
