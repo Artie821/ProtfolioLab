@@ -288,7 +288,7 @@ public class UserController {
         if (password.equals(passconf)) {
             String regex = "^(?=.*[0-9])"
                     + "(?=.*[a-z])(?=.*[A-Z])"
-                    + "(?=.*[@#$%^&+=])"
+                    + "(?=.*[\\p{Punct}])"
                     + "(?=\\S+$).{8,20}$";
             Pattern pattern = Pattern.compile(regex);
             Matcher match = pattern.matcher(password);
