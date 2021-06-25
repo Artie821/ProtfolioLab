@@ -61,13 +61,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveDefault(UserEntity user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-    }
-
-
-    @Override
     public boolean checkIfUserExist(String email) {
         return userRepository.findByEmail(email) != null ? true : false;
     }

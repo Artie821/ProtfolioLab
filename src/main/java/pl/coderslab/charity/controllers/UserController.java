@@ -309,7 +309,6 @@ public class UserController {
         } else {
             model.addAttribute("user", user);
             model.addAttribute("match", true);
-//            return "redirect: ../../reset-password?token="+token+"?regex=true";
             return "/setPassword";
         }
 

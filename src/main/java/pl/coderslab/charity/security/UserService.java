@@ -12,7 +12,6 @@ public interface UserService {
 
     void saveUser(UserEntity user) throws UserAlreadyExistException, EmailAlreadyExistExection;
 
-    void saveDefault(UserEntity user);
 
     boolean checkIfUserExist(String email);
 
