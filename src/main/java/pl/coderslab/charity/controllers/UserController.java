@@ -21,6 +21,7 @@ import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.security.UserRepository;
 import pl.coderslab.charity.security.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.regex.Matcher;
@@ -46,6 +47,7 @@ public class UserController {
         this.donationRepository = donationRepository;
         this.confirmationTokenRepository = confirmationTokenRepository;
     }
+
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public String homepageLogin() {
@@ -186,7 +188,9 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String saveUserWithEmail(@Valid UserEntity user, BindingResult result, Model model) {
+    public String saveUserWithEmail(@Valid UserEntity user, BindingResult result, Model model, HttpServletRequest request) {
+
+        String pathInfo = request.getRequestURL().toString().replace("/register","");
         if (result.hasErrors()) {
             return "register";
         }
@@ -194,8 +198,8 @@ public class UserController {
             userService.saveUser(user);
             ConfirmationToken confirmationToken = new ConfirmationToken(user);
             confirmationTokenRepository.save(confirmationToken);
-            emailService.sendSimpleMessage(user.getEmail(),"Rejestracja zakończona powodzeniem!","Aby aktywować konto, kliknij tutaj : "
-                    +"https://portfoliocharityapp.herokuapp.com/confirm-account?token="+confirmationToken.getConfirmationToken());
+            emailService.sendSimpleMessage(user.getEmail(),"Rejestracja zakończona powodzeniem!","Aby aktywować konto, kliknij tutaj : " + pathInfo
+                    +"/confirm-account?token="+confirmationToken.getConfirmationToken());
 
         } catch (UserAlreadyExistException e) {
             model.addAttribute("login", true);
@@ -251,7 +255,8 @@ public class UserController {
     }
 
     @PostMapping("/passwordReset")
-    public String passwordResetForm(@RequestParam String email){
+    public String passwordResetForm(@RequestParam String email, HttpServletRequest request){
+        String pathInfo = request.getRequestURL().toString().replace("/passwordReset","");
         UserEntity user = userRepository.findByEmail(email);
         if(userRepository.findByEmail(email) == null){
           return "redirect: ../../passwordReset?missingEmail=true";
@@ -259,7 +264,7 @@ public class UserController {
             ConfirmationToken confirmationToken = new ConfirmationToken(userRepository.findByEmail(email));
             confirmationTokenRepository.save(confirmationToken);
             emailService.sendSimpleMessage(email,"Link do resetu hasła!","Aby utworzyć nowe hasło dla użytkownika " + user.getUsername() +" kliknij w link : "
-                    +"https://portfoliocharityapp.herokuapp.com/reset-password?token="+confirmationToken.getConfirmationToken());
+                    +pathInfo+"/reset-password?token="+confirmationToken.getConfirmationToken());
             return "redirect: ../../passwordReset?success=true";
         }
     }
