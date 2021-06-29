@@ -1,12 +1,18 @@
-<img alt="Logo" src="http://coderslab.pl/svg/logo-coderslab.svg" width="400">
+# Charity web service
+
+### Portfolio application
+
+Used technolgies:
+
+* Spring Boot
+* Spring Security
+* Spring Baeldung (Spring email service)
+* MySql database
+
+* [FOR DEMO CLICK HERE](https://portfoliocharityapp.herokuapp.com/)
+
+![alt text](https://github.com/Artie821/ProtfolioLab/blob/master/src/main/resources/images/screencapture-portfoliocharityapp-herokuapp-2021-06-29-12_41_00.jpg)
 
 
-Przed przystąpieniem do pracy  przeczytaj poniższe wskazówki.
-## Jak zacząć?
+* [FOR DEMO CLICK HERE](https://portfoliocharityapp.herokuapp.com/)
 
-1. Zaimportuj projekt jako projekt `Maven`, wg poniższych wskazówek:
-
-	* W `IntelliJ` wybieramy: `File –> New –> Project from Existing Sources...`
-	* Wskazujemy lokalizację katalogu ze sklonowanym projektem i zatwierdzamy.
-	* Następnie w nowym oknie wybieramy: `Import project from external model` i wskazujemy `Maven`
-	* Wybieramy kolejno opcje: `Next –> Next –> Next –> Finish`
